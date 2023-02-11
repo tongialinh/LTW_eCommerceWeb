@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Jewels.Models.DonHang>
+
+@{
+    ViewBag.Title = "Doanh thu theo ngày";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int sum = 0;
+}
+<style>
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col"> <h3 style="float: left">Doanh thu theo ngày </h3> </div>
+        @if (Model != null)
+        {
+            <div class="col"> <h4 style="float: right">Tổng số đơn hàng : <strong>@ViewBag.countDH  </strong> </h4> </div>
+        }
+    </div> <!-- end row 1 -->
+    <hr />
+
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" }) 
+            <div class="col-sm-2 d-inline-block" style="">
+                <select class="form-control"  name="trangThai" id="trangThai">
+                    <option value="0">Chọn trạng thái </option>
+                    <option value="1">Đang xử lý</option>
+                    <option value="2">Đang giao hàng</option>
+                    <option value="3">Đã hoàn thành</option>
+                    <option value="4">Đã hủy</option>
+                </select>
+            </div>
+            <div class="col-sm-2 d-inline-block"><input class="form-control text-box" name="ngayBD" id="ngayBD" type="date" /></div>
+            <div class="col-sm-2 d-inline-block"><input class="form-control text-box" name="ngayKT" id="ngayKT" type="date" /></div>
+            <div class="col-sm-2 d-inline-block"> <input type="submit" value="Xem" class="btn btn-default search-btn" /></div>
+
+             }
+    </div> <!-- end row 2 -->
+    <br />
+
+    <div class="row">
+        @if (Model != null)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TenKH)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DienThoai)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TrangThaiDH.TenTrangThaiDH)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NgayDat)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TongTien)
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenKH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DienThoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrangThaiDH.TenTrangThaiDH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayDat)
+                        </td>
+                        <td>
+                            @item.TongTien.ToString("###,##0") VNĐ
+                        </td>
+                    </tr>
+                    sum += item.TongTien;
+                }
+            </table>
+        }
+    </div> <!-- end row 3 -->
+
+    @if (Model != null)
+    {
+        <div class="row" style="float: right">
+            <h4>Tổng doanh thu : <strong>@sum.ToString("#,##0") VNĐ </strong> </h4>
+        </div> <!-- end row 4 -->
+        <br />
+    }
+</div>
+</div>
+
+
+
+
+

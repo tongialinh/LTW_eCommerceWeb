@@ -1,0 +1,35 @@
+﻿@model Jewels.Models.HinhThucTT
+
+@{
+    ViewBag.Title = "Xóa hình thức thanh toán";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container">
+    <div class="container-fluid namecreate">
+        <h3>Bạn có chắc chắn muốn xóa hình thức thanh toán này không ?</h3>
+        <hr />
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.HinhThucTTName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HinhThucTTName)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger delete-btn" /> |
+                <button class="btn back-btn">@Html.ActionLink("Back to List", "Index")</button>
+
+            </div>
+        }
+    </div>
+</div>

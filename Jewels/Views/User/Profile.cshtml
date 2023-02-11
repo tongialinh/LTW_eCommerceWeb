@@ -1,0 +1,58 @@
+﻿@model Jewels.Models.KhachHang
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var u = Session["user"] as Jewels.Models.KhachHang;
+    string thanhVien = "Thân thiết";
+}
+
+<style>
+    span {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h2 style="text-align: center; padding-top:40px;">Tài khoản của bạn </h2>
+        <hr style=" height:2px;background-color: var(--bg5-color); width:10%;" />
+    </div>
+    <div class="row" style="margin: 10px 0 20px 0 !important;">
+        <div class="col-sm-4">
+            <img src="https://i.pinimg.com/564x/e9/6a/38/e96a38e63b8640c4081b78fc71d91e8a.jpg" style="border-radius:5px; width:100%; height: auto; float:right"/>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <span> <strong> Họ tên :  </strong> @u.TenKH</span>
+                <span> <strong> Điện thoại :  </strong> @u.DienThoai</span>
+                <span> <strong> Email :  </strong> @u.Email</span>
+                <span> <strong> Địa chỉ :  </strong> @u.DiaChi</span>
+                <span> <strong> Điểm tích lũy :  </strong> @u.TichLuy.ToString("###,##0") VNĐ</span>
+                <span>
+                    <strong> Thành viên :  </strong>
+                    @if (u.TichLuy >= 100000000)
+                    {
+                        thanhVien = "Bạch kim";
+                        @thanhVien.ToString();
+
+                    }
+                    else if (u.TichLuy >= 50000000)
+                    {
+                        thanhVien = "Vàng";
+                        @thanhVien.ToString();
+                    }
+                    else if (u.TichLuy >= 25000000)
+                    {
+                        thanhVien = "Bạc";
+                        @thanhVien.ToString();
+                    }
+                    else
+                    {
+                        @thanhVien.ToString();
+                    }
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

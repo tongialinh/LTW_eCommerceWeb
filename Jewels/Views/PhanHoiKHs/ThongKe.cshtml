@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Thống kê";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thống kê</h2>
+<hr />
+
+<div class="container">
+    <div class="row justify-content-between">
+        <!-- khach hang -->
+        <div class="col" style="background-image: linear-gradient(white, #CCF6C8);border-radius:5px; margin-right:5px;">
+            <span> <i class="fa fa-3x fa-users" aria-hidden="true"></i> </span>
+            <br /> <br />
+            <h5>Số lượng khách hàng </h5>
+            <br />
+            <h2 style="float:right;padding-right:20px;">@ViewBag.countKH</h2>
+        </div>
+        <!-- san pham -->
+        <div class="col" style="background-image: linear-gradient(white, #FAFCC2); border-radius: 5px; margin-right: 5px; ">
+            <span> <i class="fa fa-3x fa-yelp" aria-hidden="true"></i> </span>
+            <br /> <br />
+            <h5>Số lượng sản phẩm </h5>
+            <br />
+            <h2 style="float:right;padding-right:20px;">@ViewBag.countSP</h2>
+        </div>
+        <!-- don hang -->
+        <div class="col" style="background-image: linear-gradient(white, #F9C0C0); border-radius: 5px; margin-right: 5px; ">
+            <span> <i class="fa fa-3x fa-file-text-o" aria-hidden="true"></i> </span>
+            <br /> <br />
+            <h5>Số lượng đơn hàng </h5>
+            <br />
+            <h2 style="float:right;padding-right:20px;">@ViewBag.countDH</h2>
+        </div>
+        <!-- khuyen mai -->
+       @* <div class="col" style="background-image: linear-gradient(white, #F6D6AD); border-radius: 5px; ">
+            <span> <i class="fa fa-3x fa-bell-o" aria-hidden="true"></i> </span>
+            <br /> <br />
+            <h5>Số lượng mã khuyến mãi </h5>
+            <br />
+            <h2 style="float:right;padding-right:20px;">@ViewBag.countKM</h2>
+        </div>*@
+    </div>
+</div>

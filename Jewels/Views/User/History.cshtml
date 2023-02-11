@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Jewels.Models.DonHang>
+
+@{
+    ViewBag.Title = "Test";
+    string dt = Session["sdt"].ToString();
+}
+
+<div class="container">
+    <div class="row">
+        <h2 style="text-align: center; padding-top:40px;"> <i class="fa fa-clock-o"> &nbsp;</i>Lịch sử đơn hàng </h2>
+    </div>
+    <div class="row" style="margin: 20px 0 20px 0 !important; padding:10px !important; border:1px solid var(--bg5-color); border-radius:5px;">
+        <table class="table">
+            <thead style="border-bottom:2px">
+                <tr>
+                    <th scope="col">Mã đơn hàng </th>
+                    <th scope="col">Trạng thái đơn hàng </th>
+                    <th scope="col">Ngày đặt </th>
+                    <th scope="col">Tổng tiền </th>
+                    <th scope="col">Giảm giá </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() != 0)
+                {
+                    foreach (var item in Model.Where(m => m.DienThoai == dt).ToList())
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DonHangID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrangThaiDH.TenTrangThaiDH)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayDat)
+                            </td>
+                            <td>
+                                @item.TongTien.ToString("#,##0") VNĐ
+                            </td>
+                            <td>
+                                @item.KhuyenMai.TienGiam.ToString("#,##0") VNĐ
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
